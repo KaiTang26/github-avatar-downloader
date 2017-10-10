@@ -6,7 +6,12 @@ console.log("Welcome the GitHub Avatar Downloader!");
 
 var username ="KaiTang26";
 
-var token ="8ea38c7465e183ce3b8d388bfe623f03e57d786b";
+var token ="74c5f784be3ba813fe93f71053f3942e0cc68681";
+
+var owner =process.argv[2];
+
+var repo =process.argv[3];
+
 
 function getRepoContrubutors(repoOwner, repoName, cb){
 
@@ -27,18 +32,6 @@ function getRepoContrubutors(repoOwner, repoName, cb){
 
 }
 
-getRepoContrubutors("jquery", "jquery", function(err, result){
-
-  if (err) {
-    console.log("Error: ", err);
-  } else {
-    result.forEach(function(ele){
-      downloadImageByURL(ele["avatar_url"], `./avatars/${ele.login}.jpg` );
-    });
-  }
-
-});
-
 function downloadImageByURL(imURL,filePath){
   request.get(imURL)
          .on("error", function(err){
@@ -49,6 +42,34 @@ function downloadImageByURL(imURL,filePath){
          })
          .pipe(fs.createWriteStream(filePath));
 }
+
+
+if(owner && repo){
+
+  getRepoContrubutors(owner, repo, function(err, result){
+
+    if (err) {
+      console.log("Error: ", err);
+    } else {
+
+    // console.log(result);
+
+      result.forEach(function(ele){
+        downloadImageByURL(ele["avatar_url"], `./avatars/${ele.login}.jpg` );
+      });
+    }
+
+  });
+
+}else{
+
+  console.log("please input owner and repo name");
+
+}
+
+
+
+
 
 
 

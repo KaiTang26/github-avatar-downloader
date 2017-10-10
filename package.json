@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/KaiTang26/github-avatar-downloader#readme",
   "dependencies": {
+    "fs": "0.0.1-security",
     "json": "^9.0.6",
     "request": "^2.83.0"
   }
