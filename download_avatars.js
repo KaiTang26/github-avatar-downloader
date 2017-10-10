@@ -1,12 +1,13 @@
 var request = require("request");
 var fs =require("fs");
+require('dotenv').config();
 
 
 console.log("Welcome the GitHub Avatar Downloader!");
 
 var username ="KaiTang26";
 
-var token ="74c5f784be3ba813fe93f71053f3942e0cc68681";
+var token =process.env.key;
 
 var owner =process.argv[2];
 
